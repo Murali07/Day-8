@@ -1,0 +1,311 @@
+Question: 1. https://github.com/rvsp/typescript-oops/blob/master/Practice/Movie.md
+
+Code:
+
+a) Write a constructor for the class Movie, which takes a String representing the title of the movie, 
+a String representing the studio, and a String representing the rating as its arguments, 
+and sets the respective class properties to these values.
+
+class Movie{
+
+    constructor(title, studio, rating){
+
+        this.title = title;
+        this.studio = studio;
+        this.rating = rating;
+
+    }
+
+    getMovie(){
+        return `${this.title} ${this.studio} ${this.rating}`;
+    }
+}
+
+let movie1 = new Movie("Baahubali", "Sri Thenandal films", "G");
+
+console.log(movie1.getMovie());
+
+
+b) The constructor for the class Movie will set the class property rating to "PG" as default when no rating is provided.
+
+class Movie{
+
+    constructor(title, studio, rating = "PG"){
+
+        this.title = title;
+        this.studio = studio;
+        this.rating = rating;
+
+    }
+
+    getMovie(){
+        return `${this.title} ${this.studio} ${this.rating}`;
+    }
+}
+
+let movie1 = new Movie("Baahubali", "Sri Thenandal films", "G");
+
+//here we are passing only 2 aruguments as a parmeter, 
+//default parameter has been set for rating property
+let movie2 = new Movie("Beast", "Sun Pictures");
+
+console.log(movie1.getMovie());
+
+console.log(movie2.getMovie());
+
+
+c) Write a method getPG, which takes an array of base type Movie as its argument, 
+and returns a new array of only those movies in the input array with a rating of "PG". 
+You may assume the input array is full of Movie instances. The returned array need not be full.
+
+class Movie{
+
+    getPG(array){
+
+        let getPGMovie = array.filter((element) => {
+            if(element.rating === "PG"){
+                return element;
+            }
+        });
+        return getPGMovie;
+    }
+
+}
+
+let movie = new Movie();
+
+let movieArray = [
+    {
+        title: "Baahubali",
+        studio: "Sri Thenandal films",
+        rating: "G"
+    },
+    {
+        title: "Beast",
+        studio: "Sun Pictures",
+        rating: "PG"
+    },
+    {
+        title: "Casino Royale",
+        studio: "Eon Productions",
+        rating: "PG"
+    },
+    {
+        title: "KGF",
+        studio: "Studio Green",
+        rating: "R"
+    }
+];
+
+let result = movie.getPG(movieArray);
+
+console.log(result);
+
+
+d) Write a piece of code that creates an instance of the class Movie 
+with the title “Casino Royale”, the studio “Eon Productions”, and the rating “PG­13”
+
+class Movie{
+    constructor(title, studio, rating){
+        this.title = title;
+        this.studio = studio;
+        this.rating = rating;
+    }
+
+    //instance method
+    getMovie(){
+        return `${this.title} ${this.studio} ${this.rating}`;
+    }
+}
+
+let movie1 = new Movie("Casino Royale", "Eon Productions", "PG­13");
+
+console.log(movie1.getMovie());
+
+
+Question: 2. https://github.com/rvsp/typescript-oops/blob/master/Practice/class-circle.md
+
+Code:
+
+class Circle{
+    constructor(radius, color){
+        this.radius = radius;
+        this.color = color;
+    }
+
+    setRadius(radius){
+        this.radius = radius;
+    }
+
+    getRadius(){
+        return this.radius;
+    }
+
+    setColor(color){
+        this.color = color;
+    }
+
+    getColor(){
+        return this.color;
+    }
+
+    toString(){
+        return `Radius: ${this.radius} Color: ${this.color}`;
+    }
+
+    getArea(){
+        return Math.PI * this.radius * this.radius;      
+    }
+
+    getCircumference(){
+        return 2 * Math.PI * this.radius;
+    }
+}
+
+let obj1 = new Circle();
+
+let obj2 = new Circle(3.3);
+
+let obj3 = new Circle(1.0, "red");
+
+obj3.setRadius(2.2);
+
+console.log(obj3.getRadius());
+
+obj3.setColor("yellow");
+
+console.log(obj3.getColor());
+
+console.log(obj3.toString());
+
+console.log(`Area of Circle: ${obj3.getArea()}`);
+
+console.log(`Circumference of Circle: ${obj3.getCircumference()}`);
+
+
+Question: 3. Write a “person” class to hold all the details.
+
+Code: 
+
+class Person{
+
+    constructor(name, age, designation){
+
+        this.name = name;
+        this.age = age;
+        this.designation = designation;
+
+    }
+
+    static companyName = "Deloitte";
+
+    getpersonDetails(){
+        return `
+        Name: ${this.name}
+        Age: ${this.age}
+        Designation: ${this.designation}
+        `
+    }
+
+
+
+}
+
+class Employee extends Person{
+
+    constructor(name, age, designation, salary, city, status){
+        super(name, age, designation);
+        this.salary = salary;
+        this.city = city;
+        this.status = status;
+    }
+
+    static companyNew = "Pwc";
+
+    getemployeeDetails(){
+        return `
+        Name: ${this.name}
+        Age: ${this.age}
+        Designation: ${this.designation}
+        Salary: ${this.salary}
+        City: ${this.city}
+        Status: ${this.status}
+        `
+    }
+
+    static getCompanyname(){
+        console.log(Person.companyName);
+        console.log(Employee.companyNew);
+    }
+}
+
+let person1 = new Person("Murali", 24, "Full Stack Developer");
+
+let employee1 = new Employee("Murali", 24, "Full Stack Developer", "30 Lakh", "Mumbai", "Single" );
+
+let employee2 = new Employee("Vignesh", 28, "DevOps Engineer", "40 Lakh", "Trivandrum", "Married" );
+
+console.log(person1.getpersonDetails());
+
+console.log(employee1.getemployeeDetails());
+
+console.log(employee2.getemployeeDetails());
+
+Employee.getCompanyname();
+
+
+Question: 4. write a class to calculate uber price.
+
+Code:
+
+class Uber{
+
+    getPrice(array){
+        let getPriceOfYourRide = array.map((ride) => {
+            return ride.estimate + ride.waitTimeCharge;
+        }); 
+
+        return getPriceOfYourRide;
+    }
+
+}
+
+let uberRide = [
+    {
+        rideType: "UberGo",
+        distance: 6.7,
+        estimate: 100.00,
+        waitTimeCharge: 6.00,
+        duration: "15 min",
+
+    },
+    {
+        rideType: "UberAuto",
+        distance: 6.7,
+        estimate: 50.00,
+        waitTimeCharge: 5.00,
+        duration: "15 min",
+
+    },
+    {
+        rideType: "UberX",
+        distance: 6.7,
+        estimate: 120.00,
+        waitTimeCharge: 10.00,
+        duration: "15 min",
+
+    },
+    {
+        rideType: "UberPool",
+        distance: 6.7,
+        estimate: 70.00,
+        waitTimeCharge: 0.00,
+        duration: "15 min",
+
+    },
+
+];
+
+let trip1 = new Uber();
+
+console.log(trip1.getPrice(uberRide));
